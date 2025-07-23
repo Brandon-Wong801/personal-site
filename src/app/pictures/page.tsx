@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import DotGrid from '../components/DotGrid';
 import { basePath } from '../../constants';
+import '../styles/ScrollBar.css';
 
 const PicturesPage = () => {
 
@@ -162,7 +163,7 @@ const PicturesPage = () => {
         <div className="relative flex flex-col items-center z-10">
           <Navbar />
           <div
-            className="relative flex-1 overflow-y-auto w-full"
+            className="scrollable-container relative flex-1 overflow-y-auto w-full relative flex-1 overflow-y-auto w-full"
             style={{
               maxHeight: 'calc(100vh - 100px)', // Adjust height to fit within the viewport
             }}
