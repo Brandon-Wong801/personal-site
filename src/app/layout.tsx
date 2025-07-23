@@ -9,7 +9,7 @@ const firaCode = Fira_Code({
 
 export const metadata: Metadata = {
   title: "Brandon Wong",
-  description: "Brandon Wong's Personal Website",
+  description: "Brandon Wong's Website"
 };
 
 export default function RootLayout({
