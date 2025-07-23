@@ -4,9 +4,9 @@ import Masonry from '../components/Masonry';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import DotGrid from '../components/DotGrid';
+import { basePath } from '../../constants';
 
 const PicturesPage = () => {
-  const basePath = process.env.NODE_ENV === 'production' ? '/personal-site' : '';
 
   const items = [
     {
@@ -87,6 +87,54 @@ const PicturesPage = () => {
       url: `${basePath}/images/yuna.JPG`,
       height: 300,
     },
+    {
+      id: "14",
+      img: `${basePath}/images/vansire.JPG`,
+      url: `${basePath}/images/vansire.JPG`,
+      height: 300,
+    },
+    {
+      id: "15",
+      img: `${basePath}/images/yuna.JPG`,
+      url: `${basePath}/images/yuna.JPG`,
+      height: 300,
+    },
+    {
+      id: "16",
+      img: `${basePath}/images/vansire.JPG`,
+      url: `${basePath}/images/vansire.JPG`,
+      height: 300,
+    },
+    {
+      id: "17",
+      img: `${basePath}/images/yuna.JPG`,
+      url: `${basePath}/images/yuna.JPG`,
+      height: 300,
+    },
+    {
+      id: "18",
+      img: `${basePath}/images/vansire.JPG`,
+      url: `${basePath}/images/vansire.JPG`,
+      height: 300,
+    },
+    {
+      id: "19",
+      img: `${basePath}/images/yuna.JPG`,
+      url: `${basePath}/images/yuna.JPG`,
+      height: 300,
+    },
+    {
+      id: "20",
+      img: `${basePath}/images/vansire.JPG`,
+      url: `${basePath}/images/vansire.JPG`,
+      height: 300,
+    },
+    {
+      id: "21",
+      img: `${basePath}/images/yuna.JPG`,
+      url: `${basePath}/images/yuna.JPG`,
+      height: 300,
+    },
   ];
 
   return (
@@ -113,17 +161,24 @@ const PicturesPage = () => {
         {/* Center column */}
         <div className="relative flex flex-col items-center z-10">
           <Navbar />
-          <Masonry
-            items={items}
-            ease="power3.out"
-            duration={1}
-            stagger={0.25}
-            animateFrom="bottom"
-            scaleOnHover={true}
-            hoverScale={0.95}
-            blurToFocus={true}
-            colorShiftOnHover={false}
-          />
+          <div
+            className="relative flex-1 overflow-y-auto w-full"
+            style={{
+              maxHeight: 'calc(100vh - 100px)', // Adjust height to fit within the viewport
+            }}
+          >
+            <Masonry
+              items={items}
+              ease="power3.out"
+              duration={1}
+              stagger={0.25}
+              animateFrom="bottom"
+              scaleOnHover={true}
+              hoverScale={0.95}
+              blurToFocus={true}
+              colorShiftOnHover={false}
+            />
+          </div>
           <Footer className="relative z-20" />
         </div>
 
