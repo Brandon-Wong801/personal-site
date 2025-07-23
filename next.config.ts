@@ -1,13 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'export',
-  basePath: process.env.NODE_ENV === 'production' ? '/personal-site' : '', // Use basePath only in production
-  typescript: {
-    ignoreBuildErrors: true, 
-  },
+  output: "export",
+  basePath: isProd ? "/personal-site" : "", 
   images: {
     unoptimized: true, 
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
 };
 
