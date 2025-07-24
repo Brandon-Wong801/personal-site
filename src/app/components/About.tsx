@@ -3,7 +3,7 @@
 import Image from "next/image";
 import ExperienceItem from "./ExperienceItem";
 import { basePath } from "../../constants";
-import SpotifyNowPlaying from "../components/SpotifyNowPlaying"; // Import the Spotify component
+import SpotifyNowPlaying from "../components/SpotifyNowPlaying";
 
 const About = () => {
   return (
@@ -88,12 +88,11 @@ const About = () => {
           />
         </div>
 
-        {/* Spotify Component */}
         <div className="mt-12">
           <h3 className="text-2xl font-bold mb-4 text-black dark:text-white">
-            Currently Playing on Spotify
+            Listening to
           </h3>
-          <SpotifyNowPlaying /> {/* Add the Spotify component here */}
+          <SpotifyNowPlaying />
         </div>
       </div>
     </section>

@@ -2,16 +2,29 @@ import { useEffect, useState } from "react";
 
 const SpotifyNowPlaying = () => {
   const [song, setSong] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchCurrentlyPlaying = async () => {
-      const response = await fetch("/api/spotify");
-      const data = await response.json();
-      setSong(data);
+      try {
+        const response = await fetch("/api/spotify");
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} ${response.statusText}`);
+        }
+        const data = await response.json();
+        setSong(data);
+      } catch (err) {
+        console.error("Failed to fetch currently playing song:", err);
+        setError(err.message);
+      }
     };
 
     fetchCurrentlyPlaying();
   }, []);
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   if (!song || !song.isPlaying) {
     return <p>Not playing anything right now.</p>;
