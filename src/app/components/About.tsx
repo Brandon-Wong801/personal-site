@@ -1,9 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import ExperienceItem from "./ExperienceItem";
-import {basePath} from "../../constants";
+import { basePath } from "../../constants";
+import SpotifyNowPlaying from "../components/SpotifyNowPlaying"; // Import the Spotify component
 
 const About = () => {
-
   return (
     <section id="about" className="py-24">
       <div
@@ -17,7 +19,7 @@ const About = () => {
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 mb-16">
           <div className="flex-shrink-0 order-1 md:order-2">
             <Image
-              src={`${basePath}/images/IMG_0603.jpg`} 
+              src={`${basePath}/images/IMG_0603.jpg`}
               alt="Brandon Wong"
               width={200}
               height={200}
@@ -84,6 +86,14 @@ const About = () => {
             hoverImageSrc={`${basePath}/images/utah-banner.jpg`}
             duration="2017 - 2021"
           />
+        </div>
+
+        {/* Spotify Component */}
+        <div className="mt-12">
+          <h3 className="text-2xl font-bold mb-4 text-black dark:text-white">
+            Currently Playing on Spotify
+          </h3>
+          <SpotifyNowPlaying /> {/* Add the Spotify component here */}
         </div>
       </div>
     </section>
