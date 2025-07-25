@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { basePath } from '../../constants';
 
 const Navbar = () => {
   return (

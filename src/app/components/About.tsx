@@ -1,9 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import ExperienceItem from "./ExperienceItem";
-import {basePath} from "../../constants";
+import SpotifyNowPlaying from "../components/SpotifyNowPlaying";
 
 const About = () => {
-
   return (
     <section id="about" className="py-24">
       <div
@@ -17,7 +18,7 @@ const About = () => {
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 mb-16">
           <div className="flex-shrink-0 order-1 md:order-2">
             <Image
-              src={`${basePath}/images/IMG_0603.jpg`} 
+              src="/images/IMG_0603.jpg"
               alt="Brandon Wong"
               width={200}
               height={200}
@@ -61,16 +62,16 @@ const About = () => {
             company="Gap Inc."
             position="Software Engineer"
             description="Developing scalable solutions for a diverse set of e-commerce platforms"
-            imageSrc={`${basePath}/images/gapinc-logo.png`}
-            hoverImageSrc={`${basePath}/images/gapinc-banner.webp`}
+            imageSrc="/images/gapinc-logo.png"
+            hoverImageSrc="/images/gapinc-banner.webp"
             duration="2022 - Present"
           />
           <ExperienceItem
             company="PassiveLogic"
             position="Jr. Software Engineer"
             description="Worked on autonomous building control systems"
-            imageSrc={`${basePath}/images/passivelogic-logo.jpg`}
-            hoverImageSrc={`${basePath}/images/passivelogic-banner.png`}
+            imageSrc="/images/passivelogic-logo.jpg"
+            hoverImageSrc="/images/passivelogic-banner.png"
             duration="2021 - 2022"
           />
 
@@ -80,10 +81,15 @@ const About = () => {
             company="University of Utah"
             position=""
             description="B.S. Computer Science"
-            imageSrc={`${basePath}/images/utah-logo.svg`}
-            hoverImageSrc={`${basePath}/images/utah-banner.jpg`}
+            imageSrc="/images/utah-logo.svg"
+            hoverImageSrc="/images/utah-banner.jpg"
             duration="2017 - 2021"
           />
+        </div>
+
+        <div className="mt-12">
+          <hr className="border-t border-gray-300 dark:border-gray-600 mt-8" />
+          <SpotifyNowPlaying />
         </div>
       </div>
     </section>
