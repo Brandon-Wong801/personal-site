@@ -89,9 +89,7 @@ const About = () => {
         </div>
 
         <div className="mt-12">
-          <h3 className="text-2xl font-bold mb-4 text-black dark:text-white">
-            Listening to
-          </h3>
+          <hr className="border-t border-gray-300 dark:border-gray-600 mt-8" />
           <SpotifyNowPlaying />
         </div>
       </div>

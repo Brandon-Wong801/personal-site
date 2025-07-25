@@ -17,17 +17,11 @@ const getAccessToken = async () => {
     }),
   });
 
-  console.log('client info', client_id, client_secret, refresh_token);
-
-  console.log("Response Status:", response.status);
-
   return response.json();
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { access_token } = await getAccessToken();
-
-  console.log("Access Token:", access_token);
 
   const nowPlaying = await fetch("https://api.spotify.com/v1/me/player/currently-playing", {
     headers: {
@@ -40,8 +34,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const song = await nowPlaying.json();
-
-  console.log("Spotify API Response:", song);
 
   res.status(200).json({
     name: song.item.name,
