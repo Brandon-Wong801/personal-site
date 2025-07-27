@@ -2,6 +2,53 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "../../utils/supabaseClient";
+import { DndProvider, useDrag, useDrop } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
+const StickyNote = ({ note, onDelete, onMove }) => {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: "sticky-note",
+    item: { id: note.id, position: note.position },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
+
+  const [, drop] = useDrop(() => ({
+    accept: "sticky-note",
+    drop: (item, monitor) => {
+      const delta = monitor.getDifferenceFromInitialOffset();
+      const newPosition = {
+        top: item.position.top + delta.y,
+        left: item.position.left + delta.x,
+      };
+      onMove(item.id, newPosition);
+    },
+  }));
+
+  return (
+    <div
+      ref={(node) => drag(drop(node))}
+      className={`absolute p-4 bg-yellow-200 rounded shadow ${
+        isDragging ? "opacity-50" : ""
+      }`}
+      style={{
+        width: "200px",
+        height: "150px",
+        top: note.position.top,
+        left: note.position.left,
+      }}
+    >
+      <p>{note.content}</p>
+      <button
+        onClick={onDelete}
+        className="text-red-500 mt-2"
+      >
+        Delete
+      </button>
+    </div>
+  );
+};
 
 const StickyNotesPage = () => {
   const [stickyNotes, setStickyNotes] = useState([]);
@@ -13,20 +60,18 @@ const StickyNotesPage = () => {
       if (error) {
         console.error("Error fetching sticky notes:", error.message);
       } else {
-        console.log("Fetched sticky notes:", data); // Debug log
-        setStickyNotes(data); // Update state
+        setStickyNotes(data);
       }
     };
 
     fetchStickyNotes();
 
-    // Polling for updates every 5 seconds
     const interval = setInterval(() => {
       fetchStickyNotes();
     }, 5000);
 
     return () => {
-      clearInterval(interval); // Cleanup interval on component unmount
+      clearInterval(interval);
     };
   }, []);
 
@@ -54,7 +99,6 @@ const StickyNotesPage = () => {
       return;
     }
 
-    // Fetch the updated list of sticky notes
     const { data: updatedNotes, error: fetchError } = await supabase
       .from("sticky_notes")
       .select("*");
@@ -64,8 +108,27 @@ const StickyNotesPage = () => {
       return;
     }
 
-    setStickyNotes(updatedNotes); // Update the state with the new list of sticky notes
-    setNewNote(""); // Clear input after adding
+    setStickyNotes(updatedNotes);
+    setNewNote("");
+  };
+
+  const updateStickyNotePosition = async (id: number, position: { top: number; left: number }) => {
+    const { error } = await supabase
+      .from("sticky_notes")
+      .update({ position })
+      .eq("id", id);
+
+    if (error) {
+      console.error("Error updating sticky note position:", error.message);
+      return;
+    }
+
+    // Update the stickyNotes state immediately
+    setStickyNotes((prevNotes) =>
+      prevNotes.map((note) =>
+        note.id === id ? { ...note, position } : note
+      )
+    );
   };
 
   const deleteStickyNote = async (id: number) => {
@@ -74,46 +137,40 @@ const StickyNotesPage = () => {
   };
 
   return (
-    <div className="min-h-screen p-8">
-      <h1 className="text-2xl font-bold mb-4">Sticky Notes</h1>
+    <DndProvider backend={HTML5Backend}>
+      <div className="min-h-screen p-8">
+        <h1 className="text-2xl font-bold mb-4">Sticky Notes</h1>
 
-      {/* Add Sticky Note Form */}
-      <div className="mb-8">
-        <input
-          type="text"
-          value={newNote}
-          onChange={(e) => setNewNote(e.target.value)}
-          placeholder="Write a new sticky note..."
-          className="border p-2 rounded w-full mb-2"
-        />
-        <button
-          onClick={addStickyNote}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Add Sticky Note
-        </button>
-      </div>
-
-      {/* Display Sticky Notes */}
-      <div className="relative">
-        {console.log("Sticky notes state:", stickyNotes)} {/* Debug log */}
-        {stickyNotes.map((note) => (
-          <div
-            key={note.id}
-            className="absolute p-4 bg-yellow-200 rounded shadow"
-            style={{ top: note.position.top, left: note.position.left }}
+        {/* Add Sticky Note Form */}
+        <div className="mb-8">
+          <input
+            type="text"
+            value={newNote}
+            onChange={(e) => setNewNote(e.target.value)}
+            placeholder="Write a new sticky note..."
+            className="border p-2 rounded w-full mb-2"
+          />
+          <button
+            onClick={addStickyNote}
+            className="bg-blue-500 text-white px-4 py-2 rounded"
           >
-            <p>{note.content}</p>
-            <button
-              onClick={() => deleteStickyNote(note.id)}
-              className="text-red-500 mt-2"
-            >
-              Delete
-            </button>
-          </div>
-        ))}
+            Add Sticky Note
+          </button>
+        </div>
+
+        {/* Display Sticky Notes */}
+        <div className="relative">
+          {stickyNotes.map((note) => (
+            <StickyNote
+              key={note.id}
+              note={note}
+              onDelete={() => deleteStickyNote(note.id)}
+              onMove={updateStickyNotePosition}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </DndProvider>
   );
 };
 
