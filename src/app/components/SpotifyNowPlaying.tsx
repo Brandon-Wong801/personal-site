@@ -41,10 +41,10 @@ const SpotifyNowPlaying = () => {
 
   return (
     <div
-      className="relative flex flex-row items-center gap-3 p-2 rounded-lg shadow-md bg-gradient-to-r from-green-400 to-blue-500"
+      className="relative flex flex-row items-center gap-3 p-4 rounded-lg shadow-md bg-gradient-to-r from-green-400 to-blue-500"
       style={{
         width: "600px",
-        height: "120px",
+        height: "100px",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -57,7 +57,7 @@ const SpotifyNowPlaying = () => {
         />
       </div>
 
-      <div className="flex-shrink-0 ml-8">
+      <div className="flex-shrink-0 ml-2">
         <a href={song.url} target="_blank" rel="noopener noreferrer">
           <img
             src={song.albumCover}
@@ -69,9 +69,8 @@ const SpotifyNowPlaying = () => {
         </a>
       </div>
 
-      <div className="flex-1 flex flex-col justify-center">
+      <div className="flex-1 flex flex-col justify-center ml-3">
         <div>
-          {/* Anchor tag only wraps the text */}
           <h3 className="text-md font-bold text-white">
             <a href={song.url} target="_blank" rel="noopener noreferrer">
               {song.name}
