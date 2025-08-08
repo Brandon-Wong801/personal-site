@@ -38,7 +38,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   res.status(200).json({
     name: song.item.name,
     artist: song.item.artists.map((artist: any) => artist.name).join(", "),
+    artistUrl: song.item.artists[0]?.external_urls.spotify || null,
     albumCover: song.item.album.images[0].url,
+    url: song.item.external_urls.spotify,
     isPlaying: song.is_playing,
   });
 }

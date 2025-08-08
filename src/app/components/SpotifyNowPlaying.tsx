@@ -20,6 +20,9 @@ const SpotifyNowPlaying = () => {
     };
 
     fetchCurrentlyPlaying();
+
+    const interval = setInterval(fetchCurrentlyPlaying, 10000);
+    return () => clearInterval(interval);
   }, []);
 
   if (error) {
@@ -38,29 +41,47 @@ const SpotifyNowPlaying = () => {
 
   return (
     <div
-      className="relative flex flex-col md:flex-row items-center gap-4 p-4 rounded-lg shadow-md"
+      className="relative flex flex-row items-center gap-3 p-2 rounded-lg shadow-md bg-gradient-to-r from-green-400 to-blue-500"
       style={{
         width: "600px",
-        height: "200px",
-        // backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url(${song.albumCover})`,
-        // backgroundSize: "cover",
+        height: "120px",
+        backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="flex-shrink-0">
+      <div className="absolute top-2 right-2">
         <img
-          src={song.albumCover}
-          alt={song.name}
-          width={80}
-          height={80}
-          className="rounded-lg shadow-lg object-cover"
+          src="/images/spotify.png"
+          alt="Spotify Logo"
+          className="w-5 h-5"
         />
       </div>
 
-      <div className="flex-1 flex flex-col justify-between">
+      <div className="flex-shrink-0 ml-8">
+        <a href={song.url} target="_blank" rel="noopener noreferrer">
+          <img
+            src={song.albumCover}
+            alt={song.name}
+            width={70}
+            height={70}
+            className="rounded-lg shadow-lg object-cover"
+          />
+        </a>
+      </div>
+
+      <div className="flex-1 flex flex-col justify-center">
         <div>
-          <h3 className="text-lg font-bold text-white">{song.name}</h3>
-          <h4 className="text-md text-gray-300">{song.artist}</h4>
+          {/* Anchor tag only wraps the text */}
+          <h3 className="text-md font-bold text-white">
+            <a href={song.url} target="_blank" rel="noopener noreferrer">
+              {song.name}
+            </a>
+          </h3>
+          <h4 className="text-sm text-gray-300">
+            <a href={song.artistUrl} target="_blank" rel="noopener noreferrer">
+              {song.artist}
+            </a>
+          </h4>
         </div>
       </div>
     </div>

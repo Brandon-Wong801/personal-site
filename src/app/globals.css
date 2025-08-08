@@ -18,3 +18,15 @@ body {
   color: var(--foreground);
   font-family: var(--font-mono); /* Apply Fira Code globally */
 }
+
+.spotify-now-playing {
+  background: linear-gradient(to right, #1db954, #1e81b0);
+  color: white;
+  border: 2px solid #1db954;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.spotify-now-playing:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
