@@ -24,19 +24,19 @@ export default function Home() {
       {/* Page Content */}
       <div className="relative z-10 min-h-screen">
         {/* Grid Layout */}
-        <div className="grid grid-cols-[20%_60%_20%] min-h-screen">
+        <div className="grid min-h-screen grid-cols-1 md:grid-cols-[20%_60%_20%]">
           {/* Left column */}
-          <div></div>
+          <div className="hidden md:block"></div>
 
           {/* Center column */}
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center px-4">
             <Navbar />
             <About />
             <Footer/>
           </div>
 
           {/* Right column */}
-          <div></div>
+          <div className="hidden md:block"></div>
         </div>
       </div>
     </div>

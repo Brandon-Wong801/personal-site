@@ -28,18 +28,18 @@ const About = () => {
 
           {/* Text Section */}
           <div
-            className="text-left order-2 md:order-1"
+            className="order-2 text-center md:order-1 md:text-left"
             style={{
               width: "100%",
               maxWidth: "400px",
               flexShrink: 0,
             }}
           >
-            <h3 className="text-3xl font-bold mb-4 text-black dark:text-white">
+            <h3 className="mb-4 text-3xl font-bold text-black dark:text-white">
               Brandon Wong
             </h3>
             <h4 className="text-xl mb-4 text-gray-700 dark:text-gray-300">
-              Software Engineer @ Gap Inc.
+              Systems Engineer @ ALO
             </h4>
             <div className="mt-8">
               <p className="text-lg text-black dark:text-gray-500 mb-4">
@@ -59,12 +59,21 @@ const About = () => {
         {/* Experience Items */}
         <div className="space-y-6">
           <ExperienceItem
+            company="ALO"
+            position="Systems Engineer"
+            description="Developing AI solutions to automate and enhance business operations"
+            imageSrc="/images/alo-logo.png"
+            hoverImageSrc="/images/alo-banner.jpg"
+            duration="2025 - Present"
+            logoBackgroundClassName="bg-white p-2 rounded-lg"
+          />
+          <ExperienceItem
             company="Gap Inc."
             position="Software Engineer"
             description="Developing scalable solutions for a diverse set of e-commerce platforms"
             imageSrc="/images/gapinc-logo.png"
             hoverImageSrc="/images/gapinc-banner.webp"
-            duration="2022 - Present"
+            duration="2022 - 2025"
           />
           <ExperienceItem
             company="PassiveLogic"

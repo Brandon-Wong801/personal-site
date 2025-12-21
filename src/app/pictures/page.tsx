@@ -10,18 +10,6 @@ const PicturesPage = () => {
 
   const items = [
     {
-      id: "1",
-      img: `/images/climb.JPG`,
-      url: `/images/climb.JPG`,
-      height: 400,
-    },
-    {
-      id: "2",
-      img: `/images/IMG_0603.jpg`,
-      url: `/images/IMG_0603.jpg`,
-      height: 250,
-    },
-    {
       id: "3",
       img: `/images/climber.JPG`,
       url: `/images/climber.JPG`,
@@ -38,12 +26,6 @@ const PicturesPage = () => {
       img: `/images/friends.JPG`,
       url: `/images/friends.JPG`,
       height: 250,
-    },
-    {
-      id: "6",
-      img: `/images/kirbeter.jpg`,
-      url: `/images/kirbeter.jpg`,
-      height: 300,
     },
     {
       id: "7",
@@ -80,6 +62,12 @@ const PicturesPage = () => {
       img: `/images/vansire.JPG`,
       url: `/images/vansire.JPG`,
       height: 300,
+    },
+        {
+      id: "1",
+      img: `/images/climb.JPG`,
+      url: `/images/climb.JPG`,
+      height: 400,
     },
     {
       id: "13",
@@ -133,6 +121,18 @@ const PicturesPage = () => {
       id: "21",
       img: `/images/yuna.JPG`,
       url: `/images/yuna.JPG`,
+      height: 300,
+    },
+    {
+      id: "2",
+      img: `/images/IMG_0603.jpg`,
+      url: `/images/IMG_0603.jpg`,
+      height: 250,
+    },
+    {
+      id: "6",
+      img: `/images/kirbeter.jpg`,
+      url: `/images/kirbeter.jpg`,
       height: 300,
     },
   ];

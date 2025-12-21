@@ -41,10 +41,9 @@ const SpotifyNowPlaying = () => {
 
   return (
     <div
-      className="relative flex flex-row items-center gap-3 p-4 rounded-lg shadow-md bg-gradient-to-r from-green-400 to-blue-500"
+      className="relative flex w-full max-w-[600px] flex-row items-center gap-3 rounded-lg bg-gradient-to-r from-green-400 to-blue-500 p-4 shadow-md"
       style={{
-        width: "600px",
-        height: "100px",
+        minHeight: "100px",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

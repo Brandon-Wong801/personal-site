@@ -10,17 +10,24 @@ interface ExperienceItemProps {
   imageSrc: string;
   hoverImageSrc: string;
   duration: string;
+  logoBackgroundClassName?: string;
 }
 
-const ExperienceItem = ({ company, position, description, imageSrc, hoverImageSrc, duration }: ExperienceItemProps) => {
+const ExperienceItem = ({
+  company,
+  position,
+  description,
+  imageSrc,
+  hoverImageSrc,
+  duration,
+  logoBackgroundClassName,
+}: ExperienceItemProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className={`relative flex flex-col md:flex-row items-center gap-4 p-4 rounded-lg shadow-md transition-shadow`}
+      className="relative flex w-full max-w-[600px] flex-col items-center gap-4 rounded-lg p-4 shadow-md transition-shadow md:flex-row md:min-h-[200px]"
       style={{
-        width: "600px", 
-        height: "200px", 
         backgroundImage: isHovered
           ? `linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4)), url(${hoverImageSrc})`
           : "none",
@@ -30,17 +37,15 @@ const ExperienceItem = ({ company, position, description, imageSrc, hoverImageSr
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex-shrink-0">
-        <Image
-          src={imageSrc}
-          alt={`${company} logo`}
-          width={80}
-          height={80}
-          className="rounded-lg shadow-lg object-cover"
-        />
-      </div>
+      <Image
+        src={imageSrc}
+        alt={`${company} logo`}
+        width={80}
+        height={80}
+        className={`rounded-lg shadow-lg object-cover ${logoBackgroundClassName ?? ""}`}
+      />
 
-      <span className="absolute top-4 right-4 text-sm text-gray-400">
+      <span className="mt-2 w-full text-center text-sm text-gray-400 md:absolute md:top-4 md:right-4 md:mt-0 md:w-auto md:text-right md:max-w-[180px]">
         {duration}
       </span>
 
